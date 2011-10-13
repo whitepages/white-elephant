@@ -1,5 +1,7 @@
 package com.whitepages.whiteelephant;
 
+import java.util.Map;
+
 import org.apache.pig.EvalFunc;
 import org.apache.pig.data.DataType;
 import org.apache.pig.data.Tuple;
@@ -35,7 +37,8 @@ public class TupleToJson extends EvalFunc< String > {
             return null;
 
         try {
-            JSONObject obj = new JSONObject();
+            @SuppressWarnings( "unchecked" )
+            Map< String, Object > obj = ( Map< String, Object > )( new JSONObject() );
 
             for ( int i = 0; i < input.size(); i += 2 ) {
                 String key = ( String )input.get( i );
